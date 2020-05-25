@@ -33,7 +33,7 @@ public class ShortestPath
 		System.out.println(shortestDist.get(197));
 	}
 
-	// O(n log(n)) with TreeMap
+	// O(m log(n)) with TreeMap
 	public static HashMap<Integer, Integer> dijkstra(Graph graph, int sourceVertex)
 	{	
 		// Store Processed Vertices and Their Distance {Vertex=Distance}
