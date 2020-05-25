@@ -15,7 +15,7 @@ public class IntReader
 	{
 		File file = new File(filePath); 
 		Scanner sc = new Scanner(file);
-		LinkedList<Integer> list = new LinkedList<Integer>();
+		ArrayList<Integer> list = new ArrayList<Integer>();
 		while (sc.hasNextInt())
 		{
 			list.add(sc.nextInt());

@@ -18,7 +18,7 @@ public class MinCut
 		int num = Integer.MAX_VALUE;
 		for (int i = 0; i < 100; i++)
 		{
-			HashMap<Integer, List<Integer>> vertices = IntReader.adjacencyLists(new File("").getAbsolutePath().concat("/src/my/algorithms/kargerMinCut.txt"));
+			HashMap<Integer, List<Integer>> vertices = IntReader.adjacencyLists(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/kargerMinCut.txt"));
 			int temp = randomContraction(vertices);
 			System.out.println(temp);
 			num = Math.min(num, temp);

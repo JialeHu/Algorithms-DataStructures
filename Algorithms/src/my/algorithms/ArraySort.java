@@ -46,7 +46,7 @@ public class ArraySort // int[]
 		// Quick Sort I Test File
 		try
 		{
-			int[] input3 = IntReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/QuickSort.txt"));
+			int[] input3 = IntReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/QuickSort.txt"));
 			System.out.println(Arrays.toString(input3) + "\n");
 			startTime = System.nanoTime();
 			ArraySort.quickSortI(input3);

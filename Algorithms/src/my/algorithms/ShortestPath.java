@@ -15,7 +15,7 @@ public class ShortestPath
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		Graph graph = new Graph(new File("").getAbsolutePath().concat("/src/my/algorithms/dijkstraData.txt"));
+		Graph graph = new Graph(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/dijkstraData.txt"));
 		graph.print();
 		
 		HashMap<Integer, Integer> shortestDist = dijkstra(graph, 1);
