@@ -1,8 +1,9 @@
 package my.algorithms;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Random;
+
+import my.data_structures.Min_Heap;
 
 public class ArraySort // int[]
 {
@@ -18,6 +19,7 @@ public class ArraySort // int[]
 //		int[] input = {4,6,3,8,5,2,9,0,1,7,-1,-9,10,-5,-7,-2,-4,-8,-6,-3};
 		int[] input1 = Arrays.copyOf(input, input.length);
 		int[] input2 = Arrays.copyOf(input, input.length);
+		int[] input3 = Arrays.copyOf(input, input.length);
 		System.out.println(Arrays.toString(input) + "\n");
 		
 		// Arrays.sort() Dual-Pivot Quick Sort: O(n log(n))
@@ -43,21 +45,29 @@ public class ArraySort // int[]
 		System.out.println("Result is: " + isSorted(input2));
 		System.out.println("quickSortI() Time Elapsed (ns): " + (endTime-startTime) + " \n");
 		
+		// Heap Sort
+		startTime = System.nanoTime();
+		ArraySort.heapSort(input3);
+		endTime = System.nanoTime();
+		System.out.println(Arrays.toString(input3));
+		System.out.println("Result is: " + isSorted(input3));
+		System.out.println("heapSort() Time Elapsed (ns): " + (endTime-startTime) + " \n");
+		
 		// Quick Sort I Test File
-		try
-		{
-			int[] input3 = IntReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/QuickSort.txt"));
-			System.out.println(Arrays.toString(input3) + "\n");
-			startTime = System.nanoTime();
-			ArraySort.quickSortI(input3);
-			endTime = System.nanoTime();
-			System.out.println(Arrays.toString(input3));
-			System.out.println("Result is: " + isSorted(input3));
-			System.out.println("quickSortI() Time Elapsed (ns): " + (endTime-startTime) + " \n");
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		} 
+//		try
+//		{
+//			int[] input3 = IntReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/QuickSort.txt"));
+//			System.out.println(Arrays.toString(input3) + "\n");
+//			startTime = System.nanoTime();
+//			ArraySort.quickSortI(input3);
+//			endTime = System.nanoTime();
+//			System.out.println(Arrays.toString(input3));
+//			System.out.println("Result is: " + isSorted(input3));
+//			System.out.println("quickSortI() Time Elapsed (ns): " + (endTime-startTime) + " \n");
+//		} catch (Exception e)
+//		{
+//			e.printStackTrace();
+//		} 
 		
 	}
 	
@@ -176,5 +186,13 @@ public class ArraySort // int[]
 	{
 		
 	}
-
+	
+	// Heap Sort O(n log(n)) 2nlog_2(n)
+	public static void heapSort(int[] nums)
+	{
+		Min_Heap heap = new Min_Heap();
+		for (int num : nums) heap.insert(num);
+		for (int i = 0; i < nums.length; i++) nums[i] = heap.extract();
+	}
+	
 }

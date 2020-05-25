@@ -25,6 +25,8 @@ public class Min_Heap
 		while (array.get(parentIdx) > num)
 		{
 			swap(idx, parentIdx);
+			idx = parentIdx;
+			parentIdx = idx / 2;
 		}
 	}
 	
@@ -93,24 +95,6 @@ public class Min_Heap
 		int temp = array.get(idx1);
 		array.set(idx1, array.get(idx2));
 		array.set(idx2, temp);
-	}
-
-	public static void main(String[] args)
-	{
-		Min_Heap heap = new Min_Heap();
-		heap.insert(1);
-		System.out.println(heap);
-		heap.insert(0);
-		heap.insert(2);
-		heap.insert(5);
-		heap.insert(6);
-		heap.insert(3);
-		heap.insert(4);
-		System.out.println(heap);
-		while (!heap.isEmpty())
-		{
-			System.out.println(heap.extract());
-		}
 	}
 
 }
