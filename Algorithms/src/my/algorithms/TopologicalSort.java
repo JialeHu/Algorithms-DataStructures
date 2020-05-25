@@ -27,6 +27,7 @@ public class TopologicalSort
 		return true;
 	}
 
+	// O(n)
 	public static int[] DFSsort(HashMap<Integer, List<Integer>> graph)
 	{
 		// Get All Nodes

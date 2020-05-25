@@ -1,8 +1,8 @@
 package my.data_structures;
 
-class Trie {
+public class Trie {
     
-    class TrieNode {
+    public class TrieNode {
         private TrieNode[] links;
         private boolean isEnd;
         
