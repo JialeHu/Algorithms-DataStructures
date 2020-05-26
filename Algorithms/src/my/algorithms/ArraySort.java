@@ -192,7 +192,7 @@ public class ArraySort // int[]
 	{
 		Min_Heap heap = new Min_Heap();
 		for (int num : nums) heap.insert(num);
-		for (int i = 0; i < nums.length; i++) nums[i] = heap.extract();
+		for (int i = 0; i < nums.length; i++) nums[i] = heap.poll();
 	}
 	
 }

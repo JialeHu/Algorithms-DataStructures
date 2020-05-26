@@ -30,13 +30,13 @@ public class Min_Heap
 		}
 	}
 	
-	public int peek() throws EmptyHeapException
+	public int peek()
 	{
 		if (array.isEmpty()) throw new EmptyHeapException();
 		return array.get(0);
 	}
 	
-	public int extract() throws EmptyHeapException
+	public int poll()
 	{
 		if (array.isEmpty()) throw new EmptyHeapException();
 		int min = array.get(0);
