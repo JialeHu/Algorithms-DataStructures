@@ -1,4 +1,4 @@
-package my.algorithms;
+package my.utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;

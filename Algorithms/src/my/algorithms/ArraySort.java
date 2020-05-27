@@ -1,9 +1,11 @@
 package my.algorithms;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Random;
 
 import my.data_structures.Min_Heap;
+import my.utility.NumberReader;
 
 public class ArraySort // int[]
 {
@@ -54,20 +56,20 @@ public class ArraySort // int[]
 		System.out.println("heapSort() Time Elapsed (ns): " + (endTime-startTime) + " \n");
 		
 		// Quick Sort I Test File
-//		try
-//		{
-//			int[] input3 = IntReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/QuickSort.txt"));
-//			System.out.println(Arrays.toString(input3) + "\n");
-//			startTime = System.nanoTime();
-//			ArraySort.quickSortI(input3);
-//			endTime = System.nanoTime();
-//			System.out.println(Arrays.toString(input3));
-//			System.out.println("Result is: " + isSorted(input3));
-//			System.out.println("quickSortI() Time Elapsed (ns): " + (endTime-startTime) + " \n");
-//		} catch (Exception e)
-//		{
-//			e.printStackTrace();
-//		} 
+		try
+		{
+			int[] inputFile = NumberReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/QuickSort.txt"));
+			System.out.println(Arrays.toString(inputFile) + "\n");
+			startTime = System.nanoTime();
+			ArraySort.quickSortI(inputFile);
+			endTime = System.nanoTime();
+			System.out.println(Arrays.toString(inputFile));
+			System.out.println("Result is: " + isSorted(inputFile));
+			System.out.println("quickSortI() Time Elapsed (ns): " + (endTime-startTime) + " \n");
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		} 
 		
 	}
 	

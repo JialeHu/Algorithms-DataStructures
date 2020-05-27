@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import my.utility.NumberReader;
+
 public class SCC // Strongly Connected Components
 {
 

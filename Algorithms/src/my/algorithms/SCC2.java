@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
+import my.utility.NumberReader;
+
 public class SCC2 // Strongly Connected Components Iterative NOT CORRECTLY IMPLEMENTED YET
 {
 

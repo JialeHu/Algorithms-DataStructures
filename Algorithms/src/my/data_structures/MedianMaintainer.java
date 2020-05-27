@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-import my.algorithms.NumberReader;
+import my.utility.NumberReader;
 
 public class MedianMaintainer
 {

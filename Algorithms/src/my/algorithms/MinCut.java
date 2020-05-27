@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 
+import my.utility.NumberReader;
+
 public class MinCut
 {
 	
