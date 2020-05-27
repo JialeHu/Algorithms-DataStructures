@@ -13,7 +13,7 @@ public class SCC // Strongly Connected Components
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		List<int[]> lists = IntReader.int2arrays(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/SCC.txt"));
+		List<int[]> lists = NumberReader.int2arrays(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/SCC.txt"));
 		System.out.println(lists.size());
 		for (int[] list : lists) System.out.println(list.length);
 		

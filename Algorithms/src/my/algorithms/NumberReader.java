@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class IntReader
+public class NumberReader
 {
 	// Input per Line: Number
 	public static int[] int2array(String filePath) throws FileNotFoundException
@@ -22,6 +22,22 @@ public class IntReader
 		}
 		sc.close();
 		int[] array = new int[list.size()];
+		for (int i = 0; i < array.length; i++) array[i] = list.get(i);
+		return array;
+	}
+	
+	// Input per Line: Number
+	public static long[] long2array(String filePath) throws FileNotFoundException
+	{
+		File file = new File(filePath); 
+		Scanner sc = new Scanner(file);
+		ArrayList<Long> list = new ArrayList<Long>();
+		while (sc.hasNextLong())
+		{
+			list.add(sc.nextLong());
+		}
+		sc.close();
+		long[] array = new long[list.size()];
 		for (int i = 0; i < array.length; i++) array[i] = list.get(i);
 		return array;
 	}

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-import my.algorithms.IntReader;
+import my.algorithms.NumberReader;
 
 public class MedianMaintainer
 {
@@ -98,7 +98,7 @@ public class MedianMaintainer
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		// Get Test Numbers
-		int[] nums = IntReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/Median.txt"));
+		int[] nums = NumberReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/Median.txt"));
 		// Stream into Maintainer
 		MedianMaintainer mm = new MedianMaintainer();
 		for (int i = 0; i < nums.length; i++)

@@ -9,7 +9,7 @@ public class Inversion
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		int[] array = IntReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/IntegerArray.txt")); 
+		int[] array = NumberReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/IntegerArray.txt")); 
 //		int[] array = new int[]{1,3,5,2,4,6};
 		System.out.println("Array Loaded");
 		System.out.println(inversions(array));

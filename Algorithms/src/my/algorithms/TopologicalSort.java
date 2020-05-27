@@ -12,7 +12,7 @@ public class TopologicalSort
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		HashMap<Integer, List<Integer>> vertices = IntReader.adjacencyLists(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/kargerMinCut.txt"));
+		HashMap<Integer, List<Integer>> vertices = NumberReader.adjacencyLists(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/kargerMinCut.txt"));
 		vertices.get(1).clear(); // Set Node 1 as Sink Vertex
 		if (!hasCycle(vertices)) 
 		{
