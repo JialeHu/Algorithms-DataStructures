@@ -44,33 +44,47 @@ public class MedianMaintainer
 	
 	/**
 	 * 
-	 * @return Statistic Median of Whole Maintainer
+	 * @return Middle Number of Whole Maintainer
 	 * @exception EmptyMaintainerException
+	 * @implNote If Maintainer size is even, smaller number is returned.
 	 * 
 	 */
-	public int peekMedian()
+	public int peekMiddle()
 	{
 		if (isEmpty()) throw new EmptyMaintainerException();
 		if (lowHeap.size() > highHeap.size()) return lowHeap.peek();
 		else if (lowHeap.size() < highHeap.size()) return highHeap.peek();
-		else return (lowHeap.peek() + highHeap.peek()) / 2;
-//		return lowHeap.peek();
+		else return lowHeap.peek();
 	}
 	
 	/**
 	 * 
 	 * @return Statistic Median of Whole Maintainer
 	 * @exception EmptyMaintainerException
-	 * @implNote Removes median from maintainer. 
-	 * If median is constituted by two numbers in the maintainer (i.e. Even maintainer size), both numbers are removed.
 	 * 
 	 */
-	public int pollMedian()
+	public double peekMedian()
+	{
+		if (isEmpty()) throw new EmptyMaintainerException();
+		if (lowHeap.size() > highHeap.size()) return lowHeap.peek();
+		else if (lowHeap.size() < highHeap.size()) return highHeap.peek();
+		else return (double) (lowHeap.peek() + highHeap.peek()) / 2;
+	}
+	
+	/**
+	 * 
+	 * @return Middle Number of Whole Maintainer
+	 * @exception EmptyMaintainerException
+	 * @implNote If Maintainer size is even, smaller number is returned and removed.
+	 * 
+	 */
+	// NOT FULLY IMPLEMENTED
+	public int pollMiddle()
 	{
 		if (isEmpty()) throw new EmptyMaintainerException();
 		if (lowHeap.size() > highHeap.size()) return lowHeap.poll();
 		else if (lowHeap.size() < highHeap.size()) return highHeap.poll();
-		else return (lowHeap.poll() + highHeap.poll()) / 2;
+		else return lowHeap.poll();
 	}
 	
 	public int size()
@@ -105,7 +119,11 @@ public class MedianMaintainer
 		{
 			int num = nums[i];
 			mm.add(num);
-			System.out.println(num + " " + mm.peekMedian() + " " + mm.size());
+			System.out.println(num + " " + mm.peekMiddle() + " " + mm.size());
+		}
+		while (!mm.isEmpty())
+		{
+			System.out.println(mm.pollMiddle());
 		}
 	}
 	
