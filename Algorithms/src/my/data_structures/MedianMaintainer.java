@@ -8,13 +8,15 @@ import java.util.PriorityQueue;
 
 import my.utility.NumberReader;
 
+/**
+ * Maintain middle number and statistic median for a stream of {@code int} input.
+ * @author Jiale Hu
+ */
 public class MedianMaintainer
 {
 	/**
-	 * 
+	 * Runtime Exception indicating empty MedianMaintainer
 	 * @author Jiale Hu
-	 * {@summary Runtime Exception indicating empty MedianMaintainer}
-	 *
 	 */
 	private class EmptyMaintainerException extends RuntimeException
 	{
@@ -32,22 +34,28 @@ public class MedianMaintainer
 		{
 			int num = nums[i];
 			mm.add(num);
-			System.out.println(num + " " + mm.peekMiddle() + " " + mm.size());
+			System.out.println(num + " " + mm.getMiddle() + " " + mm.size());
 		}
 		// Check Result
-		System.out.println("Maintainer Middle: " + mm.peekMiddle() + " Array Middle: " + MedianMaintainer.getMiddle(nums));
-		System.out.println("Maintainer Median: " + mm.peekMedian() + " Array Median: " + MedianMaintainer.getMedian(nums));
+		System.out.println("Maintainer Middle: " + mm.getMiddle() + " Array Middle: " + MedianMaintainer.getMiddle(nums));
+		System.out.println("Maintainer Median: " + mm.getMedian() + " Array Median: " + MedianMaintainer.getMedian(nums));
 		
-		
+		// Test pollMiddle() && toArray()
 		while (!mm.isEmpty())
 		{
 			int[] array = mm.toArray();
 			int arr = MedianMaintainer.getMiddle(array);
-			int maintainer = mm.pollMiddle();
-//			System.out.println(maintainer + " " + arr);
+			int maintainer = mm.removeMiddle();
+			if (arr != maintainer) System.out.println(maintainer + " " + arr);
 		}
+		System.out.println(mm.size());
 	}
 	
+	/**
+	 * If array size is even, smaller number is returned.
+	 * @param nums Array of Integers
+	 * @return Middle Number of Input Array
+	 */
 	public static int getMiddle(int[] nums)
 	{
 		int len = nums.length;
@@ -56,6 +64,10 @@ public class MedianMaintainer
         return copy[(len-1)/2]; 
 	}
 	
+	/**
+	 * @param nums Array of Integers
+	 * @return Statistic Median of Input Array
+	 */
 	public static double getMedian(int[] nums)
 	{
 		int len = nums.length;
@@ -75,7 +87,7 @@ public class MedianMaintainer
 		highHeap = new PriorityQueue<Integer>();
 	}
 	
-	public void add(int num)
+	public synchronized void add(int num)
 	{
 		if (isEmpty() || lowHeap.size() <= highHeap.size()) lowHeap.add(num);
 		else highHeap.add(num);
@@ -89,13 +101,11 @@ public class MedianMaintainer
 	}
 	
 	/**
-	 * 
+	 * If Maintainer size is even, smaller number is returned.
 	 * @return Middle Number of Whole Maintainer
-	 * @exception EmptyMaintainerException
-	 * @implNote If Maintainer size is even, smaller number is returned.
-	 * 
+	 * @exception EmptyMaintainerException If Maintainer is empty
 	 */
-	public int peekMiddle()
+	public synchronized int getMiddle()
 	{
 		if (isEmpty()) throw new EmptyMaintainerException();
 		if (lowHeap.size() > highHeap.size()) return lowHeap.peek();
@@ -104,12 +114,10 @@ public class MedianMaintainer
 	}
 	
 	/**
-	 * 
 	 * @return Statistic Median of Whole Maintainer
-	 * @exception EmptyMaintainerException
-	 * 
+	 * @exception EmptyMaintainerException If Maintainer is empty
 	 */
-	public double peekMedian()
+	public synchronized double getMedian()
 	{
 		if (isEmpty()) throw new EmptyMaintainerException();
 		if (lowHeap.size() > highHeap.size()) return lowHeap.peek();
@@ -118,13 +126,11 @@ public class MedianMaintainer
 	}
 	
 	/**
-	 * 
+	 * If Maintainer size is even, smaller number is returned and removed. ORDER OF REMOVAL IS NOT GUARANTEED YET.
 	 * @return Middle Number of Whole Maintainer
-	 * @exception EmptyMaintainerException
-	 * @implNote If Maintainer size is even, smaller number is returned and removed.
-	 * 
+	 * @exception EmptyMaintainerException If Maintainer is empty
 	 */
-	public int pollMiddle()
+	public synchronized int removeMiddle()
 	{
 		if (isEmpty()) throw new EmptyMaintainerException();
 		int output;
@@ -142,22 +148,34 @@ public class MedianMaintainer
 		return output;
 	}
 	
-	public int size()
+	/**
+	 * @return Size of Maintainer
+	 */
+	public synchronized int size()
 	{
 		return lowHeap.size() + highHeap.size();
 	}
 	
-	public boolean isEmpty()
+	/**
+	 * @return {@code true} if Maintainer is empty
+	 */
+	public synchronized boolean isEmpty()
 	{
 		return lowHeap.isEmpty() && highHeap.isEmpty();
 	}
 	
-	public void clear()
+	/**
+	 * Clear Maintainer
+	 */
+	public synchronized void clear()
 	{
 		lowHeap.clear();
 		highHeap.clear();
 	}
 	
+	/**
+	 * @return {@code true} if Maintainer is empty
+	 */
 	public synchronized int[] toArray()
 	{
 		int[] output = new int[size()];
@@ -176,7 +194,7 @@ public class MedianMaintainer
 	}
 	
 	@Override
-	public String toString()
+	public synchronized String toString()
 	{
 		return lowHeap.toString() + highHeap.toString();
 	}
