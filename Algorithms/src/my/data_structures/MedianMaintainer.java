@@ -2,6 +2,7 @@ package my.data_structures;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -20,6 +21,51 @@ public class MedianMaintainer
 		private static final long serialVersionUID = 1L;
 	}
 	
+	// Static
+	public static void main(String[] args) throws FileNotFoundException
+	{
+		// Get Test Numbers
+		int[] nums = NumberReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/Median.txt"));
+		// Stream into Maintainer
+		MedianMaintainer mm = new MedianMaintainer();
+		for (int i = 0; i < nums.length; i++)
+		{
+			int num = nums[i];
+			mm.add(num);
+			System.out.println(num + " " + mm.peekMiddle() + " " + mm.size());
+		}
+		// Check Result
+		System.out.println("Maintainer Middle: " + mm.peekMiddle() + " Array Middle: " + MedianMaintainer.getMiddle(nums));
+		System.out.println("Maintainer Median: " + mm.peekMedian() + " Array Median: " + MedianMaintainer.getMedian(nums));
+		
+		
+		while (!mm.isEmpty())
+		{
+			int[] array = mm.toArray();
+			int arr = MedianMaintainer.getMiddle(array);
+			int maintainer = mm.pollMiddle();
+//			System.out.println(maintainer + " " + arr);
+		}
+	}
+	
+	public static int getMiddle(int[] nums)
+	{
+		int len = nums.length;
+		int[] copy = Arrays.copyOf(nums, len);
+		Arrays.sort(copy);
+        return copy[(len-1)/2]; 
+	}
+	
+	public static double getMedian(int[] nums)
+	{
+		int len = nums.length;
+		int[] copy = Arrays.copyOf(nums, len);
+		Arrays.sort(copy);
+		if (len%2 != 0) return (double) copy[len/2];
+		else return (double) (copy[(len-1)/2] + copy[len/2]) / 2;
+	}
+	
+	// Instance Variables
 	PriorityQueue<Integer> lowHeap; // Max Heap
 	PriorityQueue<Integer> highHeap; // Min Heap
 	
@@ -78,13 +124,22 @@ public class MedianMaintainer
 	 * @implNote If Maintainer size is even, smaller number is returned and removed.
 	 * 
 	 */
-	// NOT FULLY IMPLEMENTED
 	public int pollMiddle()
 	{
 		if (isEmpty()) throw new EmptyMaintainerException();
-		if (lowHeap.size() > highHeap.size()) return lowHeap.poll();
-		else if (lowHeap.size() < highHeap.size()) return highHeap.poll();
-		else return lowHeap.poll();
+		int output;
+		if (lowHeap.size() > highHeap.size()) output = lowHeap.poll();
+		else if (lowHeap.size() < highHeap.size()) output = highHeap.poll();
+		else output = lowHeap.poll();
+		
+		if (highHeap.size() == 0 || lowHeap.size() == 0) return output;
+		if (lowHeap.peek() > highHeap.peek())
+		{
+			int temp = lowHeap.poll();
+			lowHeap.add(highHeap.poll());
+			highHeap.add(temp);
+		}
+		return output;
 	}
 	
 	public int size()
@@ -103,28 +158,27 @@ public class MedianMaintainer
 		highHeap.clear();
 	}
 	
+	public synchronized int[] toArray()
+	{
+		int[] output = new int[size()];
+		int i = 0;
+		for (int num : lowHeap)
+		{
+			output[i] = num;
+			i++;
+		}
+		for (int num : highHeap)
+		{
+			output[i] = num;
+			i++;
+		}
+		return output;
+	}
+	
 	@Override
 	public String toString()
 	{
 		return lowHeap.toString() + highHeap.toString();
-	}
-
-	public static void main(String[] args) throws FileNotFoundException
-	{
-		// Get Test Numbers
-		int[] nums = NumberReader.int2array(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/Median.txt"));
-		// Stream into Maintainer
-		MedianMaintainer mm = new MedianMaintainer();
-		for (int i = 0; i < nums.length; i++)
-		{
-			int num = nums[i];
-			mm.add(num);
-			System.out.println(num + " " + mm.peekMiddle() + " " + mm.size());
-		}
-		while (!mm.isEmpty())
-		{
-			System.out.println(mm.pollMiddle());
-		}
 	}
 	
 }
