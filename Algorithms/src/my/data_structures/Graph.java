@@ -10,8 +10,9 @@ import java.util.Set;
 public class Graph
 {
 	
-	public class Edge
+	public static class Edge
 	{
+		private int tail;
 		private int head;
 		private int distance;
 		
@@ -21,6 +22,17 @@ public class Graph
 			this.distance = distance;
 		}
 		
+		public Edge(int tail, int head, int distance)
+		{
+			this.tail = tail;
+			this.head = head;
+			this.distance = distance;
+		}
+		
+		public int getTail()
+		{
+			return tail;
+		}
 		public int getHead()
 		{
 			return head;
@@ -33,11 +45,35 @@ public class Graph
 		@Override
 		public String toString()
 		{
-			return "(Head: " + head + " Distance: " + distance + ")";
+			return "(Tail: " + tail + " Head: " + head + " Distance: " + distance + ")";
 		}
 	}
 	
 	private HashMap<Integer, ArrayList<Edge>> vertices;
+	
+	public Graph(HashMap<Integer, ArrayList<Edge>> map)
+	{
+		this.vertices = map;
+	}
+	
+	public Graph(ArrayList<Edge> edgeList)
+	{
+		vertices = new HashMap<Integer, ArrayList<Edge>>();
+		
+		for (Edge edge : edgeList)
+		{
+			int tail = edge.getTail();
+			if (vertices.containsKey(tail))
+			{
+				vertices.get(tail).add(edge);
+			} else
+			{	
+				ArrayList<Edge> edges = new ArrayList<Edge>();
+				edges.add(edge);
+				vertices.put(tail, edges);
+			}
+		}
+	}
 	
 	public Graph(String filePath) throws FileNotFoundException
 	{
