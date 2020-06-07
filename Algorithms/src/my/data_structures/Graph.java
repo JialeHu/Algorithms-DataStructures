@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -29,6 +30,10 @@ public class Graph
 			this.distance = distance;
 		}
 		
+		public void setTail(int tail)
+		{
+			this.tail = tail;
+		}
 		public int getTail()
 		{
 			return tail;
@@ -50,10 +55,13 @@ public class Graph
 	}
 	
 	private HashMap<Integer, ArrayList<Edge>> vertices;
+	private int numOfVertices;
 	
 	public Graph(HashMap<Integer, ArrayList<Edge>> map)
 	{
 		this.vertices = map;
+		
+		numOfVertices = calculateVertexNum();
 	}
 	
 	public Graph(ArrayList<Edge> edgeList)
@@ -73,6 +81,8 @@ public class Graph
 				vertices.put(tail, edges);
 			}
 		}
+		
+		numOfVertices = calculateVertexNum();
 	}
 	
 	public Graph(String filePath) throws FileNotFoundException
@@ -87,6 +97,8 @@ public class Graph
 			str2graph(line);
 		}
 		sc.close();
+		
+		numOfVertices = calculateVertexNum();
 	}
 	
 	private void str2graph(String line)
@@ -107,7 +119,19 @@ public class Graph
 		}
 		sc.close();
 		vertices.put(vertex, edges);
-//		System.out.println(vertices);
+	}
+	
+	private int calculateVertexNum()
+	{
+		Set<Integer> set = new HashSet<Integer>(vertices.keySet());
+		for (int vertex : vertices.keySet())
+		{
+			for (Edge edge : vertices.get(vertex))
+			{
+				set.add(edge.getHead());
+			}
+		}
+		return set.size();
 	}
 	
 	public Set<Integer> getVertices()
@@ -120,7 +144,12 @@ public class Graph
 		return vertices.get(vertex);
 	}
 	
-	public int getVertexSize()
+	public int getNumOfVertices()
+	{
+		return numOfVertices;
+	}
+	
+	public int getNumOfTails()
 	{
 		return vertices.size();
 	}
@@ -133,7 +162,7 @@ public class Graph
 	@Override
 	public String toString()
 	{
-		return "# Vertices: " + vertices.size();
+		return "# Vertices: " + numOfVertices;
 	}
 
 }

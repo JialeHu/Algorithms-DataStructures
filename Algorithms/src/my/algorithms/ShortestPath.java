@@ -41,7 +41,7 @@ public class ShortestPath
 		// Initialize with Source Vertex
 		shortestDist.put(sourceVertex, 0);
 		// Main Loop
-		while (shortestDist.size() != graph.getVertexSize())
+		while (shortestDist.size() != graph.getNumOfTails())
 		{
 			// Store Distances of Candidates {Distance=Head}
 			TreeMap<Integer, Integer> treeMap = new TreeMap<Integer, Integer>();
