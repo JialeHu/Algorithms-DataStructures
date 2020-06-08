@@ -91,7 +91,7 @@ public class MinimumSpanningTree
 			visitedEdge.add(minEdge);
 		}
 		
-		// Return spanning edges
+		// Return minimum spanning edges
 		return new ArrayList<Edge>(visitedEdge);
 	}
 
