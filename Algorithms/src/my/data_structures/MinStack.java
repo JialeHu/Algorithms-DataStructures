@@ -6,8 +6,8 @@ import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
- * This {@code MinStack} class extends {@link Stack} and maintain the 
- * minimum element in the {@code MinStack} at any time.
+ * This {@code MinStack} class extends {@link Stack} and maintains the 
+ * minimum element in the {@code MinStack}.
  * 
  * 
  * @author Jiale Hu
@@ -17,7 +17,7 @@ public class MinStack<E> extends Stack<E> implements Serializable {
 
 	private static final long serialVersionUID = 5987730602286369600L;
 	
-	private final Stack<E> mins;
+	private Stack<E> mins;
     private final Comparator<? super E> comparator;
     
     public MinStack() {
@@ -84,6 +84,28 @@ public class MinStack<E> extends Stack<E> implements Serializable {
     }
     
     /**
+     * Remove all of the element from this stack.
+     */
+    @Override
+    public void clear() {
+    	super.clear();
+    	mins.clear();
+    }
+    
+    /**
+     * Returns a clone of this stack. The copy will contain a 
+     * reference to a clone of the internal data, not a reference 
+     * to the original internal data in this stack.
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Object clone() {
+		MinStack<E> clone = (MinStack<E>) super.clone();
+    	clone.mins = (Stack<E>) this.mins.clone();
+    	return clone;
+    }
+    
+    /**
      * Returns the minimum element in this stack at the time.
      * 
      * @return the minimum element in this stack according to the 
@@ -109,7 +131,8 @@ public class MinStack<E> extends Stack<E> implements Serializable {
     
     @Override
     public String toString() {
-		return super.toString() + " Min: " + getMin();
+    	if (super.isEmpty()) return "[" + super.toString() + ",Min=]";
+		return "[" + super.toString() + ",Min=" + getMin() + "]";
     }
     
     @SuppressWarnings("unchecked")
