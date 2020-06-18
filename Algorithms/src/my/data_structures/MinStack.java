@@ -2,7 +2,6 @@ package my.data_structures;
 
 import java.io.Serializable;
 import java.util.Comparator;
-import java.util.Deque;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
