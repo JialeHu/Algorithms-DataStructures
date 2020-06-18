@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"my.data_structures"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"my.algorithms"},{"l":"my.data_structures"}]
