@@ -1,14 +1,19 @@
 package my.data_structures;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.EmptyStackException;
 import java.util.Stack;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
 /**
  * This {@code MinStack} class extends {@link Stack} and maintains the 
  * minimum element in the {@code MinStack}.
  * 
+ * This class does NOT support methods in {@code Vector} that modify 
+ * the data in this stack.
  * 
  * @author Jiale Hu
  *
@@ -143,5 +148,160 @@ public class MinStack<E> extends Stack<E> implements Serializable {
     private int comparator(E input, E curMin) {
     	return comparator.compare(input, curMin);
     }
+    
+    // Unsupported Methods
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public boolean add(E e) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public void add(int index, E element) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public boolean addAll(Collection<? extends E> c) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public boolean addAll(int index, Collection<? extends E> c) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public void addElement(E obj) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public E remove(int index) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public boolean remove(Object o) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public boolean removeAll(Collection<?> c) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public void removeAllElements() {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public boolean removeElement(Object obj) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public void removeElementAt(int index) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    public boolean removeIf(Predicate<? super E> filter) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+    protected void removeRange(int fromIndex, int toIndex) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+	public void replaceAll(UnaryOperator<E> operator) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+	public boolean retainAll(Collection<?> c) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+	public E set(int index, E element) {
+    	throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Unsupported Operation.
+     * @throws UnsupportedOperationException Unsupported Operation.
+     */
+    @Override
+	public void setElementAt(E obj, int index) {
+    	throw new UnsupportedOperationException();
+    }
+    
 }
 
