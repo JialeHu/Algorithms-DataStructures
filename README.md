@@ -6,5 +6,5 @@ Updating periodically
 ### QuickLinks
 - [Source Code](/Algorithms/src/my)
 - [Documentation](https://htmlpreview.github.io/?https://github.com/JialeHu/Algorithms-DataStructures/blob/master/Algorithms/doc/index.html)
-- [Javadoc Files](/Algorithms/doc)
+- [JavaDoc Files](/Algorithms/doc)
 - [.class Files](/Algorithms/bin/my)
