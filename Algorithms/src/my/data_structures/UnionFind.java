@@ -147,11 +147,12 @@ public class UnionFind<E>
 		
 		E node1 = edge.getSource();
 		E node2 = edge.getTarget();
-		
+		if (!nodes.containsKey(node1) || !nodes.containsKey(node2)) return false;
+
 		Node<E> node1End = find(node1);
 		Node<E> node2End = find(node2);
 		if (node1End.equals(node2End)) return false;
-		
+
 		node2End.next = node1End;
 		numEndNodes--;
 		return true;
@@ -196,6 +197,7 @@ public class UnionFind<E>
 	 */
 	private Node<E> findEndNode(Node<E> start)
 	{
+		if (start == null) return null;
 		while (!start.isEnd())
 		{
 			start = start.next;
