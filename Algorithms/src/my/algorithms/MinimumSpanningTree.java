@@ -16,6 +16,10 @@ public class MinimumSpanningTree
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		// Load Graph
+		/* [number_of_nodes] [number_of_edges]
+		 * [edge 1 node 1] [edge 1 node 2] [edge 1 cost]
+		 * [edge 2 node 1] [edge 2 node 2] [edge 2 cost]
+		 */
 		File file = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/edges.txt"));
 		Scanner sc = new Scanner(file);
 		System.out.println(sc.nextLine());

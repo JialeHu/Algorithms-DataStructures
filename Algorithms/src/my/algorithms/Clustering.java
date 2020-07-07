@@ -18,28 +18,52 @@ public class Clustering
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		// Load Graph
+		// Load Graph 1
+		/* [number_of_nodes]
+		 * [edge 1 node 1] [edge 1 node 2] [edge 1 cost]
+		 * [edge 2 node 1] [edge 2 node 2] [edge 2 cost]
+		 */
 		File file = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/clustering1.txt"));
 		Scanner sc = new Scanner(file);
-		
 		int numNodes = Integer.parseInt(sc.nextLine());
 		List<Integer> nodes = IntStream.rangeClosed(1, numNodes).boxed().collect(Collectors.toList());
-		
 		List<Edge<Integer>> edges = new ArrayList<Edge<Integer>>();
 		while (sc.hasNextLine())
 		{
 			String line = sc.nextLine();
-			Scanner sc2 = new Scanner(line);
-			edges.add(new Edge<Integer>(sc2.nextInt(), sc2.nextInt(), sc2.nextInt()));
-			sc2.close();
+			Scanner nsc = new Scanner(line);
+			edges.add(new Edge<Integer>(nsc.nextInt(), nsc.nextInt(), nsc.nextInt()));
+			nsc.close();
 		}
 		sc.close();
-		
 		System.out.println(edges);
 		System.out.println(nodes);
 		
 		int maxSpacing = maxSpacingKclustering(edges, nodes, 4);
-		System.out.println(maxSpacing);
+		System.out.println("max-spacing: " + maxSpacing);
+		
+		System.out.println("--------------------------------------------------");
+		
+		// Load Graph 2
+		/* [# of nodes] [# of bits for each node's label]
+		 * [first bit of node 1] ... [last bit of node 1]
+		 * [first bit of node 2] ... [last bit of node 2]
+		 */
+		File file2 = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/clustering_big.txt"));
+		Scanner sc2 = new Scanner(file2);
+		System.out.println(sc2.nextLine());
+		
+		List<Integer> nodes2 = new ArrayList<>();
+		while (sc2.hasNextLine())
+		{
+			nodes2.add(Integer.parseInt(sc2.nextLine().replaceAll("\\s",""), 2));
+		}
+		sc2.close();
+		
+		// largest K that K clustering with spacing at least 3
+		// spacing determined by Hamming distance
+		int maxK = maxKwithMinSpacingBits(nodes2);
+		System.out.println(maxK);
 	}
 	
 	public static int maxSpacingKclustering(List<Edge<Integer>> edges, List<Integer> nodes, int k)
@@ -69,6 +93,31 @@ public class Clustering
 		}
 		// Error
 		return 0;
+	}
+	
+	private static int maxKwithMinSpacingBits(List<Integer> nodes)
+	{
+		// Initialize UnionFind
+		UnionFind<Integer> unionFind = new UnionFind<>(nodes); // All edges with 0 distance are union
+		
+		// Loop all nodes (bits)
+		for(int node : nodes)
+		{
+			for (int i = 0; i < 24; i++)
+			{
+				// Calculate bits with Hamming distance 1
+				int dist1 = node ^ (1 << i);
+				unionFind.union(new Edge<Integer>(node, dist1, 0));
+				for (int j = i + 1; j < 24; j++)
+				{
+					// Calculate bits with Hamming distance 2
+					int dist2 = node ^ (1 << i) ^ (1 << j);
+					unionFind.union(new Edge<Integer>(node, dist2, 0));
+				}
+			}
+		}
+		
+		return unionFind.size();
 	}
 
 }
