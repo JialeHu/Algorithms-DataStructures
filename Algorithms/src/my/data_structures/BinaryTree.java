@@ -2,8 +2,16 @@ package my.data_structures;
 
 import java.util.Arrays;
 
+/**
+ * This class contains {@code static} methods related to binary tree.
+ * @author Jiale Hu
+ */
 public class BinaryTree
 {
+	/**
+	 * Node class for binary tree with {@code int} as values.
+	 * @author Jiale Hu
+	 */
 	public static class TreeNode {
 		public int val;
 		public TreeNode left;
@@ -13,6 +21,10 @@ public class BinaryTree
 		public String toString() {return BinaryTree.toString(this);}
 	}
 	
+	/**
+	 * @param root {@link TreeNode} of input binary tree
+	 * @return serialized {@code String} of input binary tree by pre-order traversal
+	 */
 	public static String serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
         serialize_traverse(root, sb);
@@ -29,6 +41,10 @@ public class BinaryTree
 	    serialize_traverse(root.right, sb);
 	}
 
+	/**
+	 * @param data {@code String} representation of binary tree generated from {@code serialize()}
+	 * @return root {@link TreeNode} of deserialized binary tree
+	 */
 	public static TreeNode deserialize(String data) {
         String[] vals = data.split(",");
         int[] idx = new int[]{0};
@@ -45,11 +61,19 @@ public class BinaryTree
 	    return node;
 	}
 	
+	/**
+	 * @param root {@link TreeNode} of input binary tree
+	 * @return number of nodes in the binary tree
+	 */
 	public static int sizeOf(TreeNode root) {
 		if (root == null) return 0;
 		return sizeOf(root.left) + sizeOf(root.right) + 1;
 	}
 
+	/**
+	 * @param root {@link TreeNode} of input binary tree
+	 * @return maximum depth (i.e. height) of the binary tree
+	 */
 	public static int maxDepth(TreeNode root) {
 		return maxDepth_traverse(root, 0);
 	}
@@ -59,6 +83,10 @@ public class BinaryTree
         return Math.max(maxDepth_traverse(node.left, num+1), maxDepth_traverse(node.right, num+1));
 	}
 	
+	/**
+	 * @param root {@link TreeNode} of input binary tree
+	 * @return minimum depth (i.e. height) of the binary tree
+	 */
 	public static int minDepth(TreeNode root) {
 		return minDepth_traverse(root, 0);
 	}
@@ -68,6 +96,10 @@ public class BinaryTree
         return Math.min(minDepth_traverse(node.left, num+1), minDepth_traverse(node.right, num+1));
 	}
 	
+	/**
+	 * Print input binary tree in 2D.
+	 * @param root {@link TreeNode} of input binary tree
+	 */
 	public static void print(TreeNode root) {
 		int depth = maxDepth(root);
         int width = (1 << depth) - 1; // 2^depth - 1
@@ -93,6 +125,10 @@ public class BinaryTree
         print_traverse(root.right, output, d+2, 1+mid, e);
     }
 
+	/**
+	 * @param root {@link TreeNode} of input binary tree
+	 * @return {@code String} representation of pre-order traversal of input binary tree
+	 */
 	public static String toString(TreeNode root) {
 		String str = serialize(root);
 		return "[" + str.substring(0, str.length()-1) + "]";
