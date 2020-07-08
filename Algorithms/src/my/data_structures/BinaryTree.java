@@ -72,7 +72,7 @@ public class BinaryTree
 		int depth = maxDepth(root);
         int width = (1 << depth) - 1; // 2^depth - 1
         
-        String[][] output = new String[depth*2][width];
+        String[][] output = new String[depth*2-1][width];
         for (String[] row : output) Arrays.fill(row, " ");
         print_traverse(root, output, 0, 0, width);
         
