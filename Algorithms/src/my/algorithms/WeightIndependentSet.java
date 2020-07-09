@@ -7,20 +7,17 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class WeightIndependentSet
-{
+public class WeightIndependentSet {
 
     public static void main(String[] args) throws FileNotFoundException {
-	/* [number_of_vertices]
-	 * [weight of first vertex]
-	 * [weight of second vertex]
+	/*
+	 * [number_of_vertices] [weight of first vertex] [weight of second vertex]
 	 */
 	File file = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/mwis.txt"));
 	Scanner sc = new Scanner(file);
 	int i = 0, numVertices = sc.nextInt();
 	int[] weights = new int[numVertices + 1];
-	while (sc.hasNextInt())
-	{
+	while (sc.hasNextInt()) {
 	    weights[++i] = sc.nextInt();
 	}
 	sc.close();
@@ -38,9 +35,9 @@ public class WeightIndependentSet
 	System.out.println(set.contains(117));
 	System.out.println(set.contains(517));
 	System.out.println(set.contains(997));
-	
+
     }
-    
+
     /**
      * @param weights of vertices, index starting at 1
      * @return maximum total weight of WIS
@@ -49,7 +46,7 @@ public class WeightIndependentSet
 	int[] dp = maxWIS_helper(weights);
 	return dp[dp.length - 1];
     }
-    
+
     /**
      * @param weights of vertices, index starting at 1
      * @return {@code Set<Integer>} of vertices that sum to maxWIS
@@ -59,7 +56,7 @@ public class WeightIndependentSet
 	Set<Integer> set = new HashSet<>();
 	int i = dp.length - 1;
 	while (i > 0) {
-	    if (i > 1 && dp[i-1] >= dp[i-2] + weights[i]) {
+	    if (i > 1 && dp[i - 1] >= dp[i - 2] + weights[i]) {
 		i -= 1;
 	    } else {
 		set.add(i);
@@ -68,14 +65,15 @@ public class WeightIndependentSet
 	}
 	return set;
     }
-    
+
     private static int[] maxWIS_helper(int[] weights) {
-	if (weights[0] != 0) throw new IllegalArgumentException("weights index starts at 1");
+	if (weights[0] != 0)
+	    throw new IllegalArgumentException("weights index starts at 1");
 	int[] dp = new int[weights.length];
 	dp[1] = weights[1];
-	
+
 	for (int i = 2; i < weights.length; i++) {
-	    dp[i] = Math.max(dp[i-1], dp[i-2] + weights[i]);
+	    dp[i] = Math.max(dp[i - 1], dp[i - 2] + weights[i]);
 	}
 	return dp;
     }
