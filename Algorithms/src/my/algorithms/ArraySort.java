@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Random;
 
-import my.data_structures.Min_Heap;
+import my.data_structures.Heap;
 import my.utility.NumberReader;
 
 public class ArraySort // int[]
@@ -18,7 +18,7 @@ public class ArraySort // int[]
 	int[] input = new int[size];
 	for (int i = 0; i < size; i++)
 	    input[i] = random.nextInt(upperBound - lowerBound) + lowerBound;
-//		int[] input = {4,6,3,8,5,2,9,0,1,7,-1,-9,10,-5,-7,-2,-4,-8,-6,-3};
+	//		int[] input = {4,6,3,8,5,2,9,0,1,7,-1,-9,10,-5,-7,-2,-4,-8,-6,-3};
 	int[] input1 = Arrays.copyOf(input, input.length);
 	int[] input2 = Arrays.copyOf(input, input.length);
 	int[] input3 = Arrays.copyOf(input, input.length);
@@ -28,14 +28,14 @@ public class ArraySort // int[]
 	long startTime = System.nanoTime();
 	Arrays.sort(input);
 	long endTime = System.nanoTime();
-	System.out.println(Arrays.toString(input));
+//	System.out.println(Arrays.toString(input));
 	System.out.println("Arrays.sort() Time Elapsed (ns): " + (endTime - startTime) + "\n");
 
 	// Merge Sort
 	startTime = System.nanoTime();
 	ArraySort.mergeSort(input1);
 	endTime = System.nanoTime();
-//		System.out.println(Arrays.toString(input1));
+//	System.out.println(Arrays.toString(input1));
 	System.out.println("Result is: " + isSorted(input1));
 	System.out.println("mergeSort() Time Elapsed (ns): " + (endTime - startTime) + " \n");
 
@@ -43,7 +43,7 @@ public class ArraySort // int[]
 	startTime = System.nanoTime();
 	ArraySort.quickSortI(input2);
 	endTime = System.nanoTime();
-//		System.out.println(Arrays.toString(input2));
+//	System.out.println(Arrays.toString(input2));
 	System.out.println("Result is: " + isSorted(input2));
 	System.out.println("quickSortI() Time Elapsed (ns): " + (endTime - startTime) + " \n");
 
@@ -51,7 +51,7 @@ public class ArraySort // int[]
 	startTime = System.nanoTime();
 	ArraySort.heapSort(input3);
 	endTime = System.nanoTime();
-	System.out.println(Arrays.toString(input3));
+//	System.out.println(Arrays.toString(input3));
 	System.out.println("Result is: " + isSorted(input3));
 	System.out.println("heapSort() Time Elapsed (ns): " + (endTime - startTime) + " \n");
 
@@ -63,7 +63,7 @@ public class ArraySort // int[]
 	    startTime = System.nanoTime();
 	    ArraySort.quickSortI(inputFile);
 	    endTime = System.nanoTime();
-	    System.out.println(Arrays.toString(inputFile));
+//	    System.out.println(Arrays.toString(inputFile));
 	    System.out.println("Result is: " + isSorted(inputFile));
 	    System.out.println("quickSortI() Time Elapsed (ns): " + (endTime - startTime) + " \n");
 	} catch (Exception e) {
@@ -143,16 +143,16 @@ public class ArraySort // int[]
     }
 
     private static int choosePivot(int[] nums, int lo, int hi) {
-//		int n1 = nums[lo];
-//		int n2 = nums[(hi-lo)/2 + lo];
-//		int n3 = nums[hi];
-//		int max = Math.max(Math.max(n1, n2), n3);
-//		int min = Math.min(Math.min(n1, n2), n3);
-//		if (n1 != max && n1 != min) return lo;
-//		if (n2 != max && n2 != min) return (hi-lo)/2 + lo;
-//		if (n3 != max && n3 != min) return hi;
+	//		int n1 = nums[lo];
+	//		int n2 = nums[(hi-lo)/2 + lo];
+	//		int n3 = nums[hi];
+	//		int max = Math.max(Math.max(n1, n2), n3);
+	//		int min = Math.min(Math.min(n1, n2), n3);
+	//		if (n1 != max && n1 != min) return lo;
+	//		if (n2 != max && n2 != min) return (hi-lo)/2 + lo;
+	//		if (n3 != max && n3 != min) return hi;
 
-//		int rand = new Random().nextInt(hi - lo) + lo;
+	//		int rand = new Random().nextInt(hi - lo) + lo;
 
 	return lo;
     }
@@ -188,7 +188,7 @@ public class ArraySort // int[]
 
     // Heap Sort O(n log(n)) 2nlog_2(n)
     public static void heapSort(int[] nums) {
-	Min_Heap heap = new Min_Heap();
+	Heap<Integer> heap = new Heap<>();
 	for (int num : nums)
 	    heap.insert(num);
 	for (int i = 0; i < nums.length; i++)
