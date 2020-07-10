@@ -34,11 +34,11 @@ public class Knapsack {
 	System.out.println(num + " " + value_weights.size());
 	System.out.println("knapsack size: " + size);
 
-	System.out.println(knapsackValue(value_weights, size));
+	System.out.println("total value: " + knapsackValue(value_weights, size));
 	Set<Pair<Integer, Integer>> set = knapsack(value_weights, size);
 	System.out.println(set);
-	int sum = set.stream().mapToInt((p) -> p.get1()).sum();
-	System.out.println(sum);
+	System.out.println("total value from set: " + set.stream().mapToInt((p) -> p.get1()).sum());
+	System.out.println("total weight from set: " + set.stream().mapToInt((p) -> p.get2()).sum());
 	
 	System.out.println("-----------");
 	
@@ -56,7 +56,7 @@ public class Knapsack {
 	System.out.println(num + " " + value_weights.size());
 	System.out.println("knapsack size: " + size);
 	
-	System.out.println(knapsackValue2(value_weights, size));
+	System.out.println("total value: " + knapsackValue2(value_weights, size));
     }
 
     /**
