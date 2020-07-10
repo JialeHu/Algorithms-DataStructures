@@ -15,7 +15,8 @@ public class HuffmanCoding {
 
     public static void main(String[] args) throws FileNotFoundException {
 	/*
-	 * [number_of_symbols] [weight of symbol #1] [weight of symbol #2]
+	 * [number_of_symbols] 
+	 * [weight of symbol #1] [weight of symbol #2]
 	 */
 	File file = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/huffman.txt"));
 	Scanner sc = new Scanner(file);

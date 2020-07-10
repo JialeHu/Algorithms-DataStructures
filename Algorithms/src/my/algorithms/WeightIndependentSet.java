@@ -11,7 +11,9 @@ public class WeightIndependentSet {
 
     public static void main(String[] args) throws FileNotFoundException {
 	/*
-	 * [number_of_vertices] [weight of first vertex] [weight of second vertex]
+	 * [number_of_vertices]
+	 * [weight of first vertex]
+	 * [weight of second vertex]
 	 */
 	File file = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/mwis.txt"));
 	Scanner sc = new Scanner(file);
@@ -43,7 +45,7 @@ public class WeightIndependentSet {
      * @return maximum total weight of WIS
      */
     public static int maxWISvalue(int[] weights) {
-	int[] dp = maxWIS_helper(weights);
+	int[] dp = maxWIS_dp(weights);
 	return dp[dp.length - 1];
     }
 
@@ -52,8 +54,9 @@ public class WeightIndependentSet {
      * @return {@code Set<Integer>} of vertices that sum to maxWIS
      */
     public static Set<Integer> maxWIS(int[] weights) {
-	int[] dp = maxWIS_helper(weights);
+	int[] dp = maxWIS_dp(weights);
 	Set<Integer> set = new HashSet<>();
+	// Reconstruct solution
 	int i = dp.length - 1;
 	while (i > 0) {
 	    if (i > 1 && dp[i - 1] >= dp[i - 2] + weights[i]) {
@@ -66,7 +69,7 @@ public class WeightIndependentSet {
 	return set;
     }
 
-    private static int[] maxWIS_helper(int[] weights) {
+    private static int[] maxWIS_dp(int[] weights) {
 	if (weights[0] != 0)
 	    throw new IllegalArgumentException("weights index starts at 1");
 	int[] dp = new int[weights.length];

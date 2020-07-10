@@ -18,8 +18,9 @@ public class Clustering {
     public static void main(String[] args) throws FileNotFoundException {
 	// Load Graph 1
 	/*
-	 * [number_of_nodes] [edge 1 node 1] [edge 1 node 2] [edge 1 cost] [edge 2 node
-	 * 1] [edge 2 node 2] [edge 2 cost]
+	 * [number_of_nodes] 
+	 * [edge 1 node 1] [edge 1 node 2] [edge 1 cost] 
+	 * [edge 2 node 1] [edge 2 node 2] [edge 2 cost]
 	 */
 	File file = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/clustering1.txt"));
 	Scanner sc = new Scanner(file);
@@ -43,8 +44,9 @@ public class Clustering {
 
 	// Load Graph 2
 	/*
-	 * [# of nodes] [# of bits for each node's label] [first bit of node 1] ...
-	 * [last bit of node 1] [first bit of node 2] ... [last bit of node 2]
+	 * [# of nodes] [# of bits for each node's label] 
+	 * [first bit of node 1] ... [last bit of node 1]
+	 * [first bit of node 2] ... [last bit of node 2]
 	 */
 	File file2 = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/clustering_big.txt"));
 	Scanner sc2 = new Scanner(file2);
