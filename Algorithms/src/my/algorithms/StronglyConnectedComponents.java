@@ -10,7 +10,7 @@ import java.util.List;
 
 import my.utility.NumberReader;
 
-public class StronglyConnectedComponets {
+public class StronglyConnectedComponents {
 
     public static void main(String[] args) throws FileNotFoundException {
 	List<int[]> lists = NumberReader
