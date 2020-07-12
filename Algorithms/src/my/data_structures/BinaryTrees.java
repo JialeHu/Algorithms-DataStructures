@@ -114,6 +114,24 @@ public class BinaryTrees {
 	    return num;
 	return Math.min(minDepth_traverse(node.left, num + 1), minDepth_traverse(node.right, num + 1));
     }
+    
+    /**
+     * @param root {@link TreeNode} of input binary tree
+     * @return {@code true} if the left and right subtrees of every node differ in height by no more than 1
+     */
+    public static boolean isBalanced(TreeNode root) {
+        return height(root) != -1;
+    }
+    
+    private static int height(TreeNode root) {
+        if (root == null) return 0;
+        int left = height(root.left);
+        if (left == -1) return -1;
+        int right = height(root.right);
+        if (right == -1) return -1;
+        if (left-right > 1 || right-left > 1) return -1;
+        return Math.max(left,right) + 1;
+    }
 
     /**
      * Print input binary tree in 2D.
