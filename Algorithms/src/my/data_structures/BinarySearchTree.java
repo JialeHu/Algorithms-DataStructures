@@ -14,7 +14,7 @@ import java.util.Vector;
 public class BinarySearchTree<V> {
 
     /**
-     * Node class for binary search tree with {@code int} as key and <V> as value,
+     * Node class for binary search tree with {@code int} as key and {@code <V>} as value,
      * with optional {@code int} weight. Default weight is 1)
      * 
      * @author Jiale Hu
@@ -92,6 +92,7 @@ public class BinarySearchTree<V> {
      * Insert a key and value without weight into BST.
      * (Default weight is 1)
      * @param key to be inserted
+     * @param value to be inserted
      * @return {@code false} if key is already in BST
      */
     public boolean insert(int key, V value) {
@@ -101,6 +102,8 @@ public class BinarySearchTree<V> {
     /**
      * Insert a key with value and weight into BST.
      * @param key to be inserted
+     * @param value to be inserted
+     * @param weight to be inserted
      * @return {@code false} if key is already in BST
      */
     @SuppressWarnings("unchecked")

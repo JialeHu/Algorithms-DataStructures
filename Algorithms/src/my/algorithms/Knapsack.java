@@ -60,7 +60,8 @@ public class Knapsack {
     }
 
     /**
-     * Calculate maximum of items can be put in a knapsack (sum of item weight <= totalSize of the knapsack).
+     * Calculate maximum of items can be put in a knapsack.
+     * (sum of item weight smaller than or equal to totalSize of the knapsack)
      * @param items {@code Pair<Value, Weight>} to be put in the knapsack
      * @param totalSize of the knapsack
      * @return maximum value can be put in the knapsack
@@ -74,7 +75,8 @@ public class Knapsack {
     }
 
     /**
-     * Calculate maximum of items can be put in a knapsack (sum of item weight <= totalSize of the knapsack).
+     * Calculate maximum of items can be put in a knapsack.
+     * (sum of item weight smaller than or equal to totalSize of the knapsack)
      * @param items {@code Pair<Value, Weight>} to be put in the knapsack
      * @param totalSize of the knapsack
      * @return items to be put in the knapsack for maximum value
@@ -116,7 +118,8 @@ public class Knapsack {
     }
     
     /**
-     * Calculate maximum of items can be put in a knapsack (sum of item weight <= totalSize of the knapsack).
+     * Calculate maximum of items can be put in a knapsack.
+     * (sum of item weight smaller than or equal to totalSize of the knapsack)
      * Better space performance.
      * @param items {@code Pair<Value, Weight>} to be put in the knapsack
      * @param totalSize of the knapsack
