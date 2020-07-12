@@ -15,12 +15,13 @@ Updating periodically
   | [Inversion](/Algorithms/src/my/algorithms/Inversion.java) | [Sequence Alignment](/Algorithms/src/my/algorithms/SequenceAlignment.java) | [Shortest Path](/Algorithms/src/my/algorithms/ShortestPath.java) | [Huffman Codes](/Algorithms/src/my/algorithms/HuffmanCoding.java) |
   |  | [Weight Independent Set](/Algorithms/src/my/algorithms/WeightIndependentSet.java) | [Strongly Connected Components](/Algorithms/src/my/algorithms/StronglyConnectedComponents.java) | [Minimum Spanning Tree](/Algorithms/src/my/algorithms/MinimumSpanningTree.java) |
   ||| [Topological Sort](/Algorithms/src/my/algorithms/TopologicalSort.java) | [Scheduling](/Algorithms/src/my/algorithms/Scheduling.java) |
+  ||||
 
 
 #### Data Structures
   | Generics |
   | --- |
-  | [BinarySearchTree<>](/Algorithms/src/my/data_structures/BinarySearchTree.java) |
+  | [Optimal BinarySearchTree<>](/Algorithms/src/my/data_structures/BinarySearchTree.java) |
   | [Heap<>](/Algorithms/src/my/data_structures/Heap.java) |
   | [MinStack<>](/Algorithms/src/my/data_structures/MinStack.java) |
   | [UnionFind<>](/Algorithms/src/my/data_structures/UnionFind.java) |
