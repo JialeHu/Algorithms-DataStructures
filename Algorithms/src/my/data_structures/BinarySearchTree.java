@@ -1,5 +1,7 @@
 package my.data_structures;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -195,7 +197,33 @@ public class BinarySearchTree<V> {
         }
         return node;
     }
+    
+    /**
+     * Get keys of the BST as a {@code Set<Integer>}.
+     * @return {@code Set<Integer>} of keys
+     */
+    public Set<Integer> keySet() {
+	Set<Integer> set = new HashSet<>();
+	keySet_traverse(root, set);
+	return set;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void keySet_traverse(TreeNode<V> node, Set<Integer> set) {
+	if (node == null) return;
+	keySet_traverse((TreeNode<V>) node.left, set);
+	set.add(node.key);
+	keySet_traverse((TreeNode<V>) node.right, set);
+    }
 
+    /**
+     * Check if the BST is empty.
+     * @return {@code true} if the size of BST is zero
+     */
+    public boolean isEmpty() {
+	return size == 0;
+    }
+    
     /**
      * @return size of the BST
      */
@@ -255,6 +283,14 @@ public class BinarySearchTree<V> {
 	int leftCost = BSTcost_traverse((TreeNode<V>) node.left, level + 1);
 	int rightCost = BSTcost_traverse((TreeNode<V>) node.right, level + 1);
 	return leftCost + rightCost + node.getWeight() * level;
+    }
+    
+    /**
+     * Check if the BST is optimal.
+     * @return {@code true} if current BST cost equals to the optimal BST cost
+     */
+    public boolean isOptimal() {
+	return BSTcost() == optimalBSTcost();
     }
     
     /**
@@ -362,40 +398,71 @@ public class BinarySearchTree<V> {
     }
     
     // Testing
-    public static void main(String[] a) {
-
-	BinaryTrees.TreeNode root = BinaryTrees.deserialize("1,2,*,3,*,*,4,5,*,*,6,7");
-	BinaryTrees.print(root);
-	System.out.println(BinaryTrees.isBalanced(root));
-	
-	BinarySearchTree<String> bst = new BinarySearchTree<String>();
-	System.out.println(bst.insert(1, "one", 5));
-	System.out.println(bst.insert(2, "two", 40));
-	System.out.println(bst.insert(3, "three", 8));
-	System.out.println(bst.insert(4, "four", 4));
-	System.out.println(bst.insert(5, "five", 10));
-	System.out.println(bst.insert(6, "six", 10));
-	System.out.println(bst.insert(7, "seven", 23));
-	bst.printKey();
-	System.out.println("is balanced: " + bst.isBalanced());
-	System.out.println("BST cost: " + bst.BSTcost());
-	
-	System.out.println("containsKey 5: " + bst.containsKey(5));
-	System.out.println("search 5: " + bst.search(5));
-	System.out.println("replace 5: " + bst.replace(5, "five", 10));
-	
-	bst.balance();
-	bst.printKey();
-	System.out.println("is balanced: " + bst.isBalanced());
-	System.out.println("BST cost: " + bst.BSTcost());
-	
-	System.out.println("optimal BST cost: " + bst.optimalBSTcost());
-	
-	bst.optimalBST();
-	bst.printKey();
-	System.out.println("BST cost: " + bst.BSTcost());
-	
-	System.out.println(bst);
-    }
+//    public static void main(String[] a) {
+//
+//	BinaryTrees.TreeNode root = BinaryTrees.deserialize("1,2,*,3,*,*,4,5,*,*,6,7");
+//	BinaryTrees.print(root);
+//	System.out.println(BinaryTrees.isBalanced(root));
+//	
+//	BinarySearchTree<String> bst = new BinarySearchTree<String>();
+//	System.out.println("is balanced: " + bst.isBalanced());
+//	System.out.println(bst);
+//	bst.printKey();
+//	System.out.println(bst.insert(1, "one", 5));
+//	System.out.println("is balanced: " + bst.isBalanced());
+//	bst.balance();
+//	bst.optimalBST();
+//	bst.printKey();
+//	
+//	System.out.println(bst.insert(1, "one", 5));
+//	System.out.println(bst.insert(2, "two", 40));
+//	System.out.println(bst.insert(3, "three", 8));
+//	System.out.println(bst.insert(4, "four", 4));
+//	System.out.println(bst.insert(5, "five", 10));
+//	System.out.println(bst.insert(6, "six", 10));
+//	System.out.println(bst.insert(7, "seven", 23));
+//	bst.printKey();
+//	System.out.println("is balanced: " + bst.isBalanced());
+//	System.out.println("BST cost: " + bst.BSTcost());
+//	
+//	System.out.println("containsKey 5: " + bst.containsKey(5));
+//	System.out.println("search 5: " + bst.search(5));
+//	System.out.println("replace 5: " + bst.replace(5, "five", 10));
+//	
+//	bst.balance();
+//	bst.printKey();
+//	System.out.println("is balanced: " + bst.isBalanced());
+//	System.out.println("BST cost: " + bst.BSTcost());
+//	
+//	System.out.println("optimal BST cost: " + bst.optimalBSTcost());
+//	
+//	bst.optimalBST();
+//	bst.printKey();
+//	System.out.println("BST cost: " + bst.BSTcost());
+//	System.out.println("isOptimal: " + bst.isOptimal());
+//	
+//	bst = new BinarySearchTree<String>();
+//	System.out.println(bst.insert(1, "one", 20));
+//	System.out.println(bst.insert(2, "two", 5));
+//	System.out.println(bst.insert(3, "three", 17));
+//	System.out.println(bst.insert(4, "four", 10));
+//	System.out.println(bst.insert(5, "five", 20));
+//	System.out.println(bst.insert(6, "six", 3));
+//	System.out.println(bst.insert(7, "seven", 25));
+//	bst.printKey();
+//	System.out.println("BST cost: " + bst.BSTcost());
+//	
+//	bst.balance();
+//	bst.printKey();
+//	System.out.println("BST cost: " + bst.BSTcost());
+//	
+//	bst.optimalBST();
+//	bst.printKey();
+//	System.out.println("BST cost: " + bst.BSTcost());
+//	System.out.println("isOptimal: " + bst.isOptimal());
+//	System.out.println(bst.keySet());
+//	
+//	System.out.println(bst);
+//    }
 
 }

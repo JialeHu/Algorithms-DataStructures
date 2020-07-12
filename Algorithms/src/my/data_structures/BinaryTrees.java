@@ -154,7 +154,7 @@ public class BinaryTrees {
 	String str = new String();
 	for (String[] row : output)
 	    str = str.concat(Arrays.toString(row)).concat(System.lineSeparator()).replaceAll(",", "");
-	System.out.println(str);
+	System.out.print(str);
     }
 
     private static void print_traverse(TreeNode root, String[][] output, int d, int i, int e) {
