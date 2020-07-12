@@ -140,8 +140,12 @@ public class BinaryTrees {
      */
     public static void print(TreeNode root) {
 	int depth = maxDepth(root);
+	if (depth == 0) {
+	    System.out.println("[]");
+	    return;
+	}
 	int width = (1 << depth) - 1; // 2^depth - 1
-
+	
 	String[][] output = new String[depth * 2 - 1][width];
 	for (String[] row : output)
 	    Arrays.fill(row, " ");
