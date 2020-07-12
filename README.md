@@ -20,6 +20,7 @@ Updating periodically
 #### Data Structures
   | Generics |
   | --- |
+  | [BinarySearchTree<>](/Algorithms/src/my/data_structures/BinarySearchTree.java) |
   | [Heap<>](/Algorithms/src/my/data_structures/Heap.java) |
   | [MinStack<>](/Algorithms/src/my/data_structures/MinStack.java) |
   | [UnionFind<>](/Algorithms/src/my/data_structures/UnionFind.java) |
