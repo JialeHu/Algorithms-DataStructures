@@ -13,6 +13,8 @@ import my.utility.NumberReader;
 public class StronglyConnectedComponents {
 
     public static void main(String[] args) throws FileNotFoundException {
+	
+	// Run with -Xss10m for this data
 	List<int[]> lists = NumberReader
 		.int2arrays(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/SCC.txt"));
 	System.out.println(lists.size());

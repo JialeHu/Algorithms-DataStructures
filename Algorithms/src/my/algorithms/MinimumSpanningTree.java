@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -15,8 +16,9 @@ public class MinimumSpanningTree {
     public static void main(String[] args) throws FileNotFoundException {
 	// Load Graph
 	/*
-	 * [number_of_nodes] [number_of_edges] [edge 1 node 1] [edge 1 node 2] [edge 1
-	 * cost] [edge 2 node 1] [edge 2 node 2] [edge 2 cost]
+	 * [number_of_nodes] [number_of_edges] 
+	 * [edge 1 node 1] [edge 1 node 2] [edge 1 cost] 
+	 * [edge 2 node 1] [edge 2 node 2] [edge 2 cost]
 	 */
 	File file = new File(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/edges.txt"));
 	Scanner sc = new Scanner(file);
@@ -63,7 +65,7 @@ public class MinimumSpanningTree {
 	    // Loop each spanned vertex
 	    for (int node : vertices) {
 		// Loop each edge
-		ArrayList<Edge> edges = graph.getEdges(node);
+		List<Edge> edges = graph.getEdges(node);
 		if (edges == null)
 		    continue;
 		for (Edge edge : edges) {

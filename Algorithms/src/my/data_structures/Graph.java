@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -120,8 +121,38 @@ public class Graph {
 	return vertices.keySet();
     }
 
-    public ArrayList<Edge> getEdges(int vertex) {
+    public List<Edge> getEdges(int vertex) {
 	return vertices.get(vertex);
+    }
+    
+    public boolean containsEdge(int vertex1, int vertex2) {
+	if (getVertices().contains(vertex1)) {
+	    List<Edge> edges = getEdges(vertex1);
+	    for (Edge edge : edges) {
+		if (edge.getHead() == vertex2) return true;
+	    } 
+	} else if (getVertices().contains(vertex2)) {
+	    List<Edge> edges = getEdges(vertex2);
+	    for (Edge edge : edges) {
+		if (edge.getHead() == vertex1) return true;
+	    } 
+	}
+	return false;
+    }
+    
+    public Integer getEdgeCost(int vertex1, int vertex2) {
+	if (getVertices().contains(vertex1)) {
+	    List<Edge> edges = getEdges(vertex1);
+	    for (Edge edge : edges) {
+		if (edge.getHead() == vertex2) return edge.getDist();
+	    } 
+	} else if (getVertices().contains(vertex2)) {
+	    List<Edge> edges = getEdges(vertex2);
+	    for (Edge edge : edges) {
+		if (edge.getHead() == vertex1) return edge.getDist();
+	    } 
+	}
+	return null;
     }
 
     public int getNumOfVertices() {

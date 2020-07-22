@@ -2,8 +2,8 @@ package my.algorithms;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -13,6 +13,11 @@ import my.data_structures.Graph.Edge;
 public class ShortestPath {
 
     public static void main(String[] args) throws FileNotFoundException {
+	
+	/*
+	 * [Vertex1] [[head1,dist1] [head2,dist2] ...]
+	 * ...
+	 */
 	Graph graph = new Graph(new File("").getAbsolutePath().concat("/src/my/algorithms/testcases/dijkstraData.txt"));
 	graph.print();
 
@@ -31,7 +36,7 @@ public class ShortestPath {
 	System.out.println(shortestDist.get(197));
     }
 
-    // O(m log(n)) with TreeMap
+    // O(m log(n)) with TreeMap (Non-negative edge cost ONLY)
     public static HashMap<Integer, Integer> dijkstra(Graph graph, int sourceVertex) {
 	// Store Processed Vertices and Their Distance {Vertex=Distance}
 	HashMap<Integer, Integer> shortestDist = new HashMap<Integer, Integer>();
@@ -44,7 +49,7 @@ public class ShortestPath {
 	    // Find Every Processed Tail
 	    for (int tail : shortestDist.keySet()) {
 		// Find Every Unprocessed Head
-		ArrayList<Edge> edges = graph.getEdges(tail);
+		List<Edge> edges = graph.getEdges(tail);
 		for (Edge edge : edges) {
 		    int head = edge.getHead();
 		    // Skip Processed Head
@@ -62,4 +67,9 @@ public class ShortestPath {
 	}
 	return shortestDist;
     }
+    
+    public static void Bellman_Ford(Graph graph, int sourceVertex) {
+	
+    }
+    
 }
